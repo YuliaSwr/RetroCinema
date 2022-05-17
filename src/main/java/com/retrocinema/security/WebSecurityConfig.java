@@ -31,8 +31,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/loginAdmin")
-                .successForwardUrl("/admin/assignment")
                 .and()
                 .logout()
                 .logoutUrl("/logoutAdmin")
