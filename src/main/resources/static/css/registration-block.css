@@ -1,0 +1,106 @@
+/* ------ REGISTRATION BLOCK ------ */
+.form-block {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.register {
+    background-color: #fff;
+
+    width: 85%;
+    height: fit-content;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+
+}
+
+.register-title {
+    font-size: 18px;
+    width: 100%;
+    margin: 20px;
+}
+
+.register-form {
+    width: 95%;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.register-form select {
+    width: 180px;
+    height: 25px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.register-form option {
+    width: 180px;
+    height: 25px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.register-form-item {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.register-form-item:last-of-type {
+    justify-content: center;
+}
+
+.register-form input {
+    background-color: #F2F2F4;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+
+    width: 180px;
+    height: 25px;
+
+    border: 0;
+}
+
+.register-form input:focus {
+    outline: none;
+    box-shadow: 1px 1px 1px #bad9bf;
+}
+
+#submit {
+    background-color: #bad9bf;
+    color: #fff;
+
+    cursor: pointer;
+
+    width: 180px;
+    height: 27px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+
+#submit:hover {
+    color: #000;
+}
+
+.att-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    margin: 20px;
+    color: #727272;
+    text-wrap: normal;
+}
+
+/* -------------------------------- */

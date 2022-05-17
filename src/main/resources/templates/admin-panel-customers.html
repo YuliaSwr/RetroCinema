@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" href="../static/css/queue-table.css" th:href="@{/css/queue-table.css}">
+    <link rel="stylesheet" href="../static/css/registration-block.css" th:href="@{/css/registration-block.css}">
+
+    <!--FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,600;1,300;1,500&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<!------- HEADER -------->
+<div class="header">
+    <div class="header-title">
+        <p>Administration Page</p>
+    </div>
+    <div class="header-menu">
+        <a class="menu-item" th:href="@{/admin/assignment}">assignments</a>
+        <a class="menu-item" th:href="@{/admin/ticket}">tickets</a>
+        <a class="menu-item current-page" th:href="@{/admin/customer}">customers</a>
+        <a class="menu-item" th:href="@{/admin/operator}">operators</a>
+    </div>
+</div>
+<!----------------------->
+
+<!-- REGISTRATION FORM -->
+<form class="form-block" method="post" th:action="@{/admin/customer}" th:object="${customer}">
+    <div class="register">
+        <div class="register-title">
+            Register new customer
+        </div>
+        <div class="register-form">
+            <input type="text" th:field="*{id}" th:value="${customer.id}" hidden>
+            <div class="register-form-item">
+                <label for="name">Name:</label>
+                <input type="text" id="name" th:field="*{name}">
+            </div>
+            <div class="register-form-item">
+                <label for="phone-number">Phone number:</label>
+                <input type="text" id="phone-number" minlength="10" maxlength="10" pattern="[0-9]*" th:field="*{phoneNumber}">
+            </div>
+            <div class="register-form-item">
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{email}">
+            </div>
+            <div class="register-form-item register-submit">
+                <input type="submit" name="submit" value="Submit" id="submit">
+            </div>
+        </div>
+    </div>
+</form>
+<!----------------------->
+
+<!----- QUEUE TABLE ----->
+<div class="queue">
+    <table cellpadding="0" cellspacing="0">
+        <!-- header of table -->
+        <thead>
+        <tr id="thead">
+            <th class="info-column-c">
+                ID
+            </th>
+            <th class="info-column-c">
+                NAME
+            </th>
+            <th class="info-column-c">
+                EMAIL
+            </th>
+            <th class="info-column-c">
+                PHONE_NUMBER
+            </th>
+            <th class="button-column-c">
+                DELETE
+            </th>
+        </tr>
+        </thead>
+        <!--------------------->
+        <tbody>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.phoneNumber}"></td>
+            <td th:text="${customer.email}"></td>
+            <td>
+                <form th:method="post" th:action="@{/admin/customer/delete/{id}(id=${customer.id})}">
+                    <button class="button delete-button" type="submit" name="submit">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!----------------------->
+</body>
+</html>

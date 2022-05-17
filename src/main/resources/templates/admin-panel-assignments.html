@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}" >
+    <link rel="stylesheet" href="../static/css/queue-table.css" th:href="@{/css/queue-table.css}" >
+    <link rel="stylesheet" href="../static/css/statistic-block.css" th:href="@{/css/statistic-block.css}" >
+    <link rel="stylesheet" href="../static/css/registration-block.css" th:href="@{/css/registration-block.css}">
+
+    <!--FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,600;1,300;1,500&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<!------- HEADER -------->
+<div class="header">
+    <div class="header-title">
+        <p>Administration Page</p>
+    </div>
+    <div class="header-menu">
+        <a class="menu-item current-page" th:href="@{/admin/assignment}">assignments</a>
+        <a class="menu-item" th:href="@{/admin/ticket}">tickets</a>
+        <a class="menu-item" th:href="@{/admin/customer}">customers</a>
+        <a class="menu-item" th:href="@{/admin/operator}">operators</a>
+    </div>
+</div>
+<!----------------------->
+
+<!--- STATISTIC BLOCK --->
+<div class="statistic">
+    <div class="statistic-block b1">
+        <div class="statistic-block-digit" th:text="${amount_waiting}">
+            -
+        </div>
+        <div class="statistic-block-process">
+            WAITING
+        </div>
+    </div>
+    <div class="statistic-block b2">
+        <div class="statistic-block-digit" id="wait-block" th:text="${amount_inprocess}">
+            -
+        </div>
+        <div class="statistic-block-process" id="process-block">
+            IN PROCESS
+        </div>
+    </div>
+    <div class="statistic-block b3">
+        <div class="statistic-block-digit" id="done-block" th:text="${amount_done}">
+            -
+        </div>
+        <div class="statistic-block-process">
+            DONE
+        </div>
+    </div>
+</div>
+<!----------------------->
+
+<!-- REGISTRATION FORM -->
+<form class="form-block" method="post" th:action="@{/admin/assignment}" th:object="${edit_assignment}">
+    <div class="register">
+        <div class="register-title">
+            Set an operator to assignment
+        </div>
+        <div class="register-form">
+            <div class="register-form-item">
+                <label for="operator_id">Id of available operator:</label>
+                <select id="operator_id" required th:field="*{operatorId}">
+                    <option value="">Select an operator</option>
+                    <option th:each="operator : ${available_operators}" th:text="${operator.id}" th:value="${operator.id}"></option>
+                </select>
+            </div>
+            <div class="register-form-item">
+                <label for="assignment_id">Waiting assignment id:</label>
+                <select id="assignment_id" required th:field="*{assignmentId}">
+                    <option value="">Select an assignment</option>
+                    <option th:each="assignment : ${waiting_assignments}" th:text="${assignment.id}" th:value="${assignment.id}"></option>
+                </select>
+            </div>
+            <div class="register-form-item register-submit">
+                <input type="submit" name="submit" value="Submit" id="submit">
+            </div>
+        </div>
+    </div>
+</form>
+
+<!----- QUEUE TABLE ----->
+<div class="queue">
+    <table class="assignment-table" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr id="thead">
+            <th class="info-column-a">
+                ASSIGMENT_ID
+            </th>
+            <th class="info-column-a">
+                BOOKING_DATA_TIME
+            </th>
+            <th class="info-column-a">
+                TICKET_ID
+            </th>
+            <th class="info-column-a">
+                OPERATOR_ID
+            </th>
+            <th class="info-column-a">
+                STATUS
+            </th>
+            <th class="button-column-a">
+                EDIT
+            </th>
+            <th class="button-column-a">
+                DELETE
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="assignment-id">
+                2
+            </td>
+            <td class="date-time">
+                11.05.22 10.55
+            </td>
+            <td class="ticket-id">
+                203
+            </td>
+            <td class="operator-id">
+                86514
+            </td>
+            <td class="status-column" style="color: #3B83BE">
+                IN_PROCESS
+            </td>
+            <td>
+                <form th:method="post">
+                    <button class="button set-button" type="submit" name="submit">SET AS DONE</button>
+                </form>
+            </td>
+            <td>
+                <form>
+                    <button class="button delete-button" type="submit" name="submit">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        <tr th:each="assignment : ${assignments}">
+            <td th:text="${assignment.id}"></td>
+            <td th:text="${assignment.date}"></td>
+            <td th:text="${assignment.ticketId}"></td>
+            <td th:text="${assignment.operatorId} ?: 'none'"></td>
+            <td th:text="${assignment.status}"></td>
+            <td>
+                <form th:if="${assignment.isInProcess()}" th:method="post" th:action="@{/admin/assignment/done/{id}(id=${assignment.id})}">
+                    <button class="button set-button" type="submit">SET AS DONE</button>
+                </form>
+            </td>
+            <td>
+                <form th:method="post" th:action="@{/admin/assignment/delete/{id}(id=${assignment.id})}">
+                    <button class="button delete-button" type="submit" name="submit">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!----------------------->
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}" >
+    <link rel="stylesheet" href="../static/css/queue-table.css" th:href="@{/css/queue-table.css}" >
+    <link rel="stylesheet" href="../static/css/registration-block.css" th:href="@{/css/registration-block.css}">
+
+    <!--FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,600;1,300;1,500&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<!------- HEADER -------->
+<div class="header">
+    <div class="header-title">
+        <p>Administration Page</p>
+    </div>
+    <div class="header-menu">
+        <a class="menu-item" th:href="@{/admin/assignment}">assignments</a>
+        <a class="menu-item" th:href="@{/admin/ticket}">tickets</a>
+        <a class="menu-item" th:href="@{/admin/customer}">customers</a>
+        <a class="menu-item current-page" th:href="@{/admin/operator}">operators</a>
+    </div>
+</div>
+<!----------------------->
+
+<!-- REGISTRATION FORM -->
+<form class="form-block" method="post" th:action="@{/admin/operator}" th:object="${operator}">
+<div class="register">
+    <div class="register-title">
+        Register new operator
+    </div>
+    <div class="register-form">
+        <div class="register-form-item">
+            <label for="empl-code">Employee code:</label>
+            <input type="text" name="empl-code" id="empl-code" th:field="*{employeeCode}">
+        </div>
+        <div class="register-form-item">
+            <label for="last-name">Last name:</label>
+            <input type="text" name="last-name" id="last-name" th:field="*{lastName}">
+        </div>
+        <div class="register-form-item">
+            <label for="first-name">First name:</label>
+            <input type="text" name="first-name" id="first-name" th:field="*{firstName}">
+        </div>
+        <div class="register-form-item register-submit">
+            <input type="submit" name="submit" value="Submit" id="submit">
+        </div>
+    </div>
+</div>
+</form>
+<!----------------------->
+
+<!----- QUEUE TABLE ----->
+<div class="queue">
+    <table cellpadding="0" cellspacing="0">
+        <!-- header of table -->
+        <thead>
+        <tr id="thead">
+            <th class="info-column">
+                OPERATOR_ID
+            </th>
+            <th class="info-column">
+                EMPLOYEE_CODE
+            </th>
+            <th class="info-column">
+                LAST_NAME
+            </th>
+            <th class="info-column">
+                FIRST_NAME
+            </th>
+            <th class="info-column">
+                IS_AVAILABLE
+            </th>
+            <th class="button-column">
+                EDIT
+            </th>
+            <th class="button-column">
+                DELETE
+            </th>
+        </tr>
+        </thead>
+        <!--------------------->
+        <tbody>
+        <tr>
+            <td>
+                0
+            </td>
+            <td>
+                39921
+            </td>
+            <td>
+                WILL
+            </td>
+            <td>
+                SMITH
+            </td>
+            <td>
+                TRUE
+            </td>
+            <td>
+                <form>
+                    <button class="button edit-button" type="submit" name="submit">EDIT</button>
+                </form>
+            </td>
+            <td>
+                <form>
+                    <button class="button delete-button" type="submit" name="submit">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        <tr th:each="operator : ${operators}">
+            <td th:text="${operator.id}"></td>
+            <td th:text="${operator.employeeCode}"></td>
+            <td th:text="${operator.firstName}"></td>
+            <td th:text="${operator.lastName}"></td>
+            <td th:text="${operator.isAvailable}"></td>
+            <td>
+                <form th:method="post">
+                    <button class="button edit-button" type="submit" name="submit">EDIT</button>
+                </form>
+            </td>
+            <td>
+            <form th:method="post" th:action="@{/admin/operator/delete/{id}(id=${operator.id})}">
+                <button class="button delete-button" type="submit" name="submit">DELETE</button>
+            </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!----------------------->
+</body>
+</html>

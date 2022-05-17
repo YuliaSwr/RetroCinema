@@ -1,0 +1,88 @@
+/* --------- SELECTION BLOCK --------- */
+
+.selection-block {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.selection {
+    background-color: #fff;
+
+    width: 85%;
+    height: fit-content;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+
+}
+
+
+.selection-title {
+    font-size: 18px;
+    width: 100%;
+    margin: 20px;
+}
+
+.selection-form {
+    width: 95%;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.selection-form-item {
+    margin: 20px;
+}
+
+
+.selection-form input {
+    background-color: #F2F2F4;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+
+    width: 180px;
+    height: 25px;
+
+    border: 0;
+}
+
+.selection-form input:focus {
+    outline: none;
+    box-shadow: 1px 1px 1px #bad9bf;
+}
+
+#selection:hover {
+    color: #000;
+}
+
+#search {
+    background-color: #bad9bf;
+    color: #fff;
+
+    cursor: pointer;
+
+    width: 180px;
+    height: 27px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+
+#search:hover {
+    color: #000;
+}
+
+.client-sel {
+    background: #F2F2F4;
+}
+/* ----------------------------------- */

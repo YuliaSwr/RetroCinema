@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" href="../static/css/queue-table.css" th:href="@{/css/queue-table.css}">
+    <link rel="stylesheet" href="../static/css/statistic-block.css" th:href="@{/css/statistic-block.css}">
+    <link rel="stylesheet" href="../static/css/selection-block.css" th:href="@{/css/selection-block.css}">
+    <link rel="stylesheet" href="../static/css/registration-block.css" th:href="@{/css/registration-block.css}">
+
+    <!--FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,600;1,300;1,500&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+
+<!------- HEADER -------->
+<div class="header">
+    <div class="header-title">
+        <p>Administration Page</p>
+    </div>
+    <div class="header-menu">
+        <a class="menu-item" th:href="@{/admin/assignment}">assignments</a>
+        <a class="menu-item  current-page" th:href="@{/admin/ticket}">tickets</a>
+        <a class="menu-item" th:href="@{/admin/customer}">customers</a>
+        <a class="menu-item" th:href="@{/admin/operator}">operators</a>
+    </div>
+</div>
+<!----------------------->
+
+<!--- STATISTIC BLOCK --->
+<div class="statistic">
+    <div class="statistic-block b1">
+        <div class="statistic-block-digit" th:text="${number_JohnWick}">
+            0
+        </div>
+        <div class="statistic-block-movie">
+            John Wick
+        </div>
+    </div>
+    <div class="statistic-block b2">
+        <div class="statistic-block-digit" th:text="${number_GreenBook}">
+            0
+        </div>
+        <div class="statistic-block-movie">
+            Green Book
+        </div>
+    </div>
+    <div class="statistic-block b3">
+        <div class="statistic-block-digit" th:text="${number_Deadpool}">
+            0
+        </div>
+        <div class="statistic-block-movie">
+            Deadpool
+        </div>
+    </div>
+    <div class="statistic-block b4">
+        <div class="statistic-block-digit" th:text="${number_LaLaLand}">
+            0
+        </div>
+        <div class="statistic-block-movie">
+            La La Land
+        </div>
+    </div>
+    <div class="statistic-block b5">
+        <div class="statistic-block-digit" th:text="${number_KillBill}">
+            0
+        </div>
+        <div class="statistic-block-movie">
+            Kill Bill
+        </div>
+    </div>
+    <div class="statistic-block b6">
+        <div class="statistic-block-digit" th:text="${number_Titanic}">
+            0
+        </div>
+        <div class="statistic-block-movie">
+            Titanic
+        </div>
+    </div>
+</div>
+<!----------------------->
+
+<!-- REGISTRATION FORM -->
+<form class="form-block" method="post" th:action="@{/admin/ticket}" th:object="${ticket}">
+    <div class="register">
+        <div class="register-title">
+            Register new ticket
+        </div>
+        <div class="register-form">
+            <div class="register-form-item">
+                <label for="customer">Customer email:</label>
+                <select id="customer" required th:field="*{customerEmail}">
+                    <option value="">Select a customer</option>
+                    <option th:each="customer : ${customers}" th:text="${customer.email}" th:value="${customer.email}">
+                        hh
+                    </option>
+                </select>
+            </div>
+            <div class="register-form-item">
+                <label for="movie">Movie:</label>
+                <select id="movie" required th:field="*{movie}">
+                    <option value="" hidden>Select a movie</option>
+                    <option value="Titanic">Titanic</option>
+                    <option value="LaLaLand">La La Land</option>
+                    <option value="JohnWick">John Wick</option>
+                    <option value="KillBill">Kill Bill</option>
+                    <option value="Deadpool">Deadpool</option>
+                    <option value="GreenBook">Green Book</option>
+                </select>
+            </div>
+            <div class="register-form-item">
+                <label for="date">Session date:</label>
+                <input type="date" id="date" th:field="*{date}">
+            </div>
+            <div class="register-form-item">
+                <label for="time">Session time:</label>
+                <select id="time" required th:field="*{time}">
+                    <option value="" hidden>Select session time</option>
+                    <option value="18:00">18:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="22:00">22:00</option>
+                </select>
+            </div>
+            <div class="register-form-item">
+                <label for="type">Type:</label>
+                <select id="type" required th:field="*{type}">
+                    <option value="" hidden>Select a type</option>
+                    <option value="COMFORT">COMFORT</option>
+                    <option value="LUXE">LUXE</option>
+                </select>
+            </div>
+            <div class="register-form-item register-submit">
+                <input type="submit" value="Submit" id="submit">
+            </div>
+        </div>
+        <div class="att-title">
+            Attention! When a new ticket is added, then a new assignment appears in the task section, where you can
+            assign an operator for it from the list of available operators
+        </div>
+    </div>
+</form>
+<!----------------------->
+
+<!---- SELECTION FORM --->
+<form class="selection-block" method="get" th:action="@{/admin/ticket/search}" th:object="${search}">
+    <div class="selection">
+        <div class="selection-title">
+            SELECT ASSIGNMENTS
+        </div>
+        <div class="selection-form">
+            <div class="selection-form-item">
+                <label for="customer">Customer email:</label>
+                <select id="search-customer" required th:field="*{customerEmail}">
+                    <option value="">Select a customer</option>
+                    <option value="ALL">ALL</option>
+                    <option th:each="customer : ${customers}" th:text="${customer.email}"
+                            th:value="${customer.email}"></option>
+                </select>
+            </div>
+            <div class="selection-form-item">
+                <input type="submit" value="Submit" id="search">
+            </div>
+        </div>
+    </div>
+</form>
+<!----------------------->
+
+<!----- QUEUE TABLE ----->
+<div class="queue">
+    <table class="assignment-table" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr id="thead">
+            <th class="info-column-t">
+                TICKET_ID
+            </th>
+            <th class="info-column-t">
+                MOVIE
+            </th>
+            <th class="info-column-t">
+                SESSION_DATE
+            </th>
+            <th class="info-column-t">
+                SESSION_TIME
+            </th>
+            <th class="info-column-t">
+                TYPE
+            </th>
+            <th class="info-column-t">
+                CUSTOMER
+            </th>
+            <th class="button-column-t">
+                DELETE
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.id}"></td>
+            <td th:text="${ticket.movie}"></td>
+            <td th:text="${ticket.date}"></td>
+            <td th:text="${ticket.time}"></td>
+            <td th:text="${ticket.type}"></td>
+            <td th:text="${ticket.customerEmail}"></td>
+            <td>
+                <form th:method="post" th:action="@{/admin/ticket/delete/{id}(id=${ticket.id})}">
+                    <button class="button delete-button" type="submit">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!----------------------->
+</body>
+</html>

@@ -1,0 +1,75 @@
+/* --------- STATISTIC BLOCK --------- */
+
+.statistic {
+    background-color: #fff;
+
+    width: 85%;
+    height: fit-content;
+
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-around;
+
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.statistic-block {
+    width: 30%;
+    height: 120px;
+    border-right: 1px solid #ccc;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.statistic-block:last-child {
+    border-right: 0;
+}
+
+.statistic-block-digit {
+    font-weight: bold;
+    font-size: 35px;
+    color: #9ebca4;
+}
+
+.queue {
+    background-color: #fff;
+
+    width: 85%;
+    height: fit-content;
+
+    border-radius: 10px;
+}
+
+.assigment-table {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.assigment-table thead {
+    width: 100%;
+    height: 40px;
+
+    background-color: #BA95BF;
+    color: #fff;
+
+    font-weight: 500;
+}
+
+.info-column {
+    width: 17%;
+}
+
+.button-column {
+    width: 15%;
+}
+
