@@ -116,33 +116,6 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td class="assignment-id">
-                2
-            </td>
-            <td class="date-time">
-                11.05.22 10.55
-            </td>
-            <td class="ticket-id">
-                203
-            </td>
-            <td class="operator-id">
-                86514
-            </td>
-            <td class="status-column" style="color: #3B83BE">
-                IN_PROCESS
-            </td>
-            <td>
-                <form th:method="post">
-                    <button class="button set-button" type="submit" name="submit">SET AS DONE</button>
-                </form>
-            </td>
-            <td>
-                <form>
-                    <button class="button delete-button" type="submit" name="submit">DELETE</button>
-                </form>
-            </td>
-        </tr>
         <tr th:each="assignment : ${assignments}">
             <td th:text="${assignment.id}"></td>
             <td th:text="${assignment.date}"></td>

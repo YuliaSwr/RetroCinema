@@ -88,33 +88,6 @@
         </thead>
         <!--------------------->
         <tbody>
-        <tr>
-            <td>
-                0
-            </td>
-            <td>
-                39921
-            </td>
-            <td>
-                WILL
-            </td>
-            <td>
-                SMITH
-            </td>
-            <td>
-                TRUE
-            </td>
-            <td>
-                <form>
-                    <button class="button edit-button" type="submit" name="submit">EDIT</button>
-                </form>
-            </td>
-            <td>
-                <form>
-                    <button class="button delete-button" type="submit" name="submit">DELETE</button>
-                </form>
-            </td>
-        </tr>
         <tr th:each="operator : ${operators}">
             <td th:text="${operator.id}"></td>
             <td th:text="${operator.employeeCode}"></td>
