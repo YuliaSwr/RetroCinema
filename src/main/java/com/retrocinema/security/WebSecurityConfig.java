@@ -30,7 +30,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/client/**").permitAll()
                 .antMatchers("/admin/**").authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+//                .loginPage("/loginAdmin")
+//                .successForwardUrl("/admin/assignment")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
     }
 
     @Override

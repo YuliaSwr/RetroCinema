@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.swing.text.html.StyleSheet;
+
 @Controller
 public class ClientController {
 
@@ -20,6 +22,12 @@ public class ClientController {
 
     @Autowired
     private AdminService adminService;
+
+    @GetMapping("/logout")
+    public String logout(Model model) {
+        model.addAttribute("request", new ClientRequest());
+        return "index";
+    }
 
     @GetMapping("/")
     public String get(Model model) {
