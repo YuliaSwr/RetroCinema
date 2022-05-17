@@ -79,9 +79,6 @@
                 IS_AVAILABLE
             </th>
             <th class="button-column">
-                EDIT
-            </th>
-            <th class="button-column">
                 DELETE
             </th>
         </tr>
@@ -94,11 +91,6 @@
             <td th:text="${operator.firstName}"></td>
             <td th:text="${operator.lastName}"></td>
             <td th:text="${operator.isAvailable}"></td>
-            <td>
-                <form th:method="post">
-                    <button class="button edit-button" type="submit" name="submit">EDIT</button>
-                </form>
-            </td>
             <td>
             <form th:method="post" th:action="@{/admin/operator/delete/{id}(id=${operator.id})}">
                 <button class="button delete-button" type="submit" name="submit">DELETE</button>
