@@ -23,7 +23,7 @@ public class ClientController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/logout")
+    @GetMapping("/logoutAdmin")
     public String logout(Model model) {
         model.addAttribute("request", new ClientRequest());
         return "index";

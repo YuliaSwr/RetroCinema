@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .successForwardUrl("/admin/assignment")
                 .and()
                 .logout()
-                .logoutUrl("/logout")
+                .logoutUrl("/logoutAdmin")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
     }
