@@ -29,6 +29,11 @@ public class ClientController {
         return "index";
     }
 
+    @GetMapping("/loginAdmin")
+    public String loginAdmin(Model model) {;
+        return "loginAdmin";
+    }
+
     @GetMapping("/")
     public String get(Model model) {
         adminService.saveAdmin();
